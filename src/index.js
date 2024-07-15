@@ -1,12 +1,12 @@
 const express = require('express');
-const prisma = require('./lib/connect');
 const app = express();
-const db = prisma;
+const port = 3000;
 
 
 
-app.use( express
+app.use(express.json());
+app.use('/usuarios', require('./router/usuario'));
 
-app.listen(8080, ()=> {
-    console.log('rodando')
+app.listen(port, ()=> {
+    console.log('rodando');
 })

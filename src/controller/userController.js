@@ -12,7 +12,7 @@ const cadastro = async (req, res) => {
 const BuscarUsuario = async (req, res) => {
   const { id } = req.params;
   try {
-    const busca = await service.BuscarUsuario(id);
+    const usuario = await service.BuscarUsuario(id);
     res.status(200).json(usuario);
   } catch (error) {
     res.status(404).json({ error: error.messege });
@@ -31,7 +31,7 @@ const ExcluirUsuario = async (req, res) => {
 
 const ListarUsuarios = async (req, res) => {
   try {
-    const usuarios = service.Listar();
+    const usuarios = await service.Listar();
     res.status(200).json(usuarios);
   } catch (error) {
     res.status(400).json({ error: error.messege });
@@ -42,7 +42,7 @@ const atualizar = async (req, res) => {
   const { id } = req.params;
   try {
     const UsuarioAtualizado = await service.AtualizarUsuario(id, req.body);
-    req.status(200).json(UsuarioAtualizado);
+    res.status(200).json(UsuarioAtualizado);
   } catch (error) {
     res.status(400).json({ error: error.messege });
   }
@@ -53,5 +53,5 @@ module.exports = {
   BuscarUsuario,
   ExcluirUsuario,
   ListarUsuarios,
-  atualizar
-}
+  atualizar,
+};

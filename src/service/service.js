@@ -10,6 +10,8 @@ const CriarUsuario = async (Usuario) => {
         email
       }
     });
+
+    return Usuario;
   } catch (erro) {
     throw new Error(erro.messege);
   }
@@ -22,6 +24,7 @@ const BuscarUsuario = async (id) => {
         id: parseInt(id)
       }
     });
+    return UsuarioBusca;
   } catch (error) {
     throw new Error(error.messege);
   }
@@ -39,7 +42,7 @@ const AtualizarUsuario = async (id, UsuarioNovo) => {
       },
     });
 
-    return UsuarioAtualizado;
+    return UsuarioAtualizado ;
   } catch (erro) {
     throw new Error(erro.messege);
   }
@@ -47,8 +50,8 @@ const AtualizarUsuario = async (id, UsuarioNovo) => {
 
 const DeletarUsuario = async (id) => {
   try {
-    const UsuarioDeletar = await prisma.user.delete({
-    where:{id: id}
+    await prisma.user.delete({
+    where:{id: parseInt(id)}
   });
 
   } catch (error) {
@@ -64,7 +67,7 @@ const Listar = async () => {
     } catch(erro) {
         throw new Error(error.messege)
     }
-}
+};
 
 module.exports = {
     Listar,
