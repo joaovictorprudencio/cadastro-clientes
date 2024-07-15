@@ -1,7 +1,7 @@
 const prisma = require("../lib/connect");
 
-const CriarUsuario = async (dadosUsuario) => {
-  const { nome, email } = dadosUsuario;
+const CriarUsuario = async (Usuario) => {
+  const { nome, email } = Usuario;
 
   try {
     const UsuarioNovo = await prisma.user.create({
@@ -19,8 +19,59 @@ const BuscarUsuario = async (id) => {
   try {
     const UsuarioBusca = await prisma.user.findUnique({
       where: {
-        id: parseInt(id),
+        id: parseInt(id)
+      }
+    });
+  } catch (error) {
+    throw new Error(error.messege);
+  }
+};
+
+const AtualizarUsuario = async (id, UsuarioNovo) => {
+  try {
+    const { nome, email } = UsuarioNovo;
+
+    const UsuarioAtualizado = await prisma.user.update({
+      where: { id: parseInt(id) },
+      data: {
+        nome,
+        email,
       },
     });
-  } catch (error) {}
+
+    return UsuarioAtualizado;
+  } catch (erro) {
+    throw new Error(erro.messege);
+  }
 };
+
+const DeletarUsuario = async (id) => {
+  try {
+    const UsuarioDeletar = await prisma.user.delete({
+    where:{id: id}
+  });
+
+  } catch (error) {
+    throw new Error(erro.messege)
+  }
+
+}
+
+const Listar = async () => {
+    try{
+        const usuarios = await prisma.user.findMany();
+        return usuarios;
+    } catch(erro) {
+        throw new Error(error.messege)
+    }
+}
+
+module.exports = {
+    Listar,
+    CriarUsuario,
+    DeletarUsuario,
+    AtualizarUsuario,
+    BuscarUsuario
+};
+
+
