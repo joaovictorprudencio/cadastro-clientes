@@ -3,10 +3,10 @@ const prisma = new PrismaClient();
 
 prisma.$connect()
   .then(() => {
-    console.log('Connected to the database successfully');
+    console.log('conexão realizada com sucesso');
   })
   .catch((error) => {
-    console.error('Error connecting to the database:', error);
+    console.error('Erro ao se concetar ao banco de dados :', error);
   });
 
 module.exports = prisma;
