@@ -47,3 +47,11 @@ const atualizar = async (req, res) => {
     res.status(400).json({ error: error.messege });
   }
 };
+
+module.exports = {
+  cadastro,
+  BuscarUsuario,
+  ExcluirUsuario,
+  ListarUsuarios,
+  atualizar
+}

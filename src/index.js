@@ -5,9 +5,7 @@ const db = prisma;
 
 
 
-app.get('/', async  (req , res ) => {
-    res.send('pagina inicial');
-})
+app.use( express
 
 app.listen(8080, ()=> {
     console.log('rodando')
