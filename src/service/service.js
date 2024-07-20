@@ -11,13 +11,14 @@ const CriarUsuario = async (Usuario) => {
       }
     });
 
-    return Usuario;
+    return UsuarioNovo;
   } catch (erro) {
     throw new Error(erro.messege);
   }
 };
 
 const BuscarUsuario = async (id) => {
+  
   try {
     const UsuarioBusca = await prisma.user.findUnique({
       where: {
